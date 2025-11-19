@@ -43,16 +43,16 @@ def leer_datos(consulta):
         conexion.close()
 
 
-def insertar_datos(consulta):
+def insertar_datos(consulta,datos):
     conexion = generar_conexion()
     if conexion and conexion.is_connected():
         cursor = conexion.cursor()
         if cursor != None:
-            cursor.execute(consulta)
+            cursor.execute(consulta,datos)
             conexion.commit()
             id = cursor.lastrowid
             cursor.close()
-            return print(f"Id registro insertado = {id}")
+            print(f"Id registro insertado = {id}")
         else:
             print("Su búsqueda no arrojó resultados...")
         conexion.close()
