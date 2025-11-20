@@ -1,4 +1,5 @@
 from datos.conexion import leer_datos, insertar_datos
+from datos.consultas import consulta_select, consulta_insert
 from modelos.aerolinea import Aerolinea
 from modelos.avion import Avion
 from modelos.pasajero import Pasajero
@@ -10,74 +11,91 @@ def obtener_datos_aerolineas():
     lista_aerolineas = []
     tabla_aerolineas = PrettyTable()
     tabla_aerolineas.field_names = ['N°', 'Nombre', 'Web']
-    consulta = 'SELECT id_aerolinea,nombre_aerolinea,web_aerolinea FROM aerolineas'
-    resultado = leer_datos(consulta)
-    if resultado:
-        for data in resultado:
-            aerolinea = Aerolinea(data[0], data[1], data[2])  # type: ignore
-            lista_aerolineas.append(aerolinea)
-    if len(lista_aerolineas) > 0:
-        for objeto in lista_aerolineas:
-            tabla_aerolineas.add_row(
-                [objeto._id_aerolinea, objeto._nombre_aerolinea, objeto._web_aerolinea])
-    print(tabla_aerolineas)
+
+    campos = 'id_aerolinea,nombre_aerolinea,web_aerolinea'
+    tabla = 'aerolineas'
+    consulta = consulta_select(campos, tabla)
+    
+    if consulta:
+        resultado = leer_datos(consulta)
+        if resultado:
+            for data in resultado:
+                aerolinea = Aerolinea(
+                    data[0], data[1], data[2])  # type: ignore
+                lista_aerolineas.append(aerolinea)
+        if len(lista_aerolineas) > 0:
+            for objeto in lista_aerolineas:
+                tabla_aerolineas.add_row(
+                    [objeto._id_aerolinea, objeto._nombre_aerolinea, objeto._web_aerolinea])
+        print(tabla_aerolineas)
 
 
 def obtener_datos_aviones():
     lista_aviones = []
     tabla_aviones = PrettyTable()
-    tabla_aviones.field_names = [
-        'N°', 'Código', 'Tipo', 'Capacidad']
-    consulta = 'SELECT id_avion,cod_avion,tipo_avion,capacidad_avion FROM aviones'
-    resultado = leer_datos(consulta)
-    if resultado:
-        for data in resultado:
-            avion = Avion(
-                data[0], data[1], data[2], data[3])  # type: ignore
-            lista_aviones.append(avion)
+    tabla_aviones.field_names = ['N°', 'Código', 'Tipo', 'Capacidad']
+    
+    campos = 'id_avion,cod_avion,tipo_avion,capacidad_avion'
+    tabla = 'aviones'
+    consulta = consulta_select(campos, tabla)
+    
+    if consulta:
+        resultado = leer_datos(consulta)
+        if resultado:
+            for data in resultado:
+                avion = Avion(
+                    data[0], data[1], data[2], data[3])  # type: ignore
+                lista_aviones.append(avion)
 
-    if len(lista_aviones) > 0:
-        for objeto in lista_aviones:
-            tipo = ''
-            capacidad = ''
-            if objeto._tipo_avion == 1:
-                tipo = 'Carga'
-                capacidad = f'{objeto._capacidad_avion} Ton'
-            else:
-                tipo = 'Pasajeros'
-                capacidad = f'{objeto._capacidad_avion} Pasajeros'
-            tabla_aviones.add_row(
-                [objeto._id_avion, objeto._cod_avion, tipo, capacidad])
-    print(tabla_aviones)
+        if len(lista_aviones) > 0:
+            for objeto in lista_aviones:
+                tipo = ''
+                capacidad = ''
+                if objeto._tipo_avion == 1:
+                    tipo = 'Carga'
+                    capacidad = f'{objeto._capacidad_avion} Ton'
+                else:
+                    tipo = 'Pasajeros'
+                    capacidad = f'{objeto._capacidad_avion} Pasajeros'
+                tabla_aviones.add_row(
+                    [objeto._id_avion, objeto._cod_avion, tipo, capacidad])
+        print(tabla_aviones)
 
 
 def obtener_datos_pasajeros():
     lista_pasajeros = []
     tabla_pasajeros = PrettyTable()
-    tabla_pasajeros.field_names = [
-        'N°', 'Nombre', 'Pasaporte', 'Fecha Nacimiento']
-    consulta = 'SELECT id_pasajero,nombre_pasajero,num_pasaporte,fecha_nacimiento FROM pasajeros'
-    resultado = leer_datos(consulta)
-    if resultado:
-        for data in resultado:
-            pasajero = Pasajero(
-                data[0], data[1], data[2], data[3])  # type: ignore
-            lista_pasajeros.append(pasajero)
+    tabla_pasajeros.field_names = ['N°', 'Nombre', 'Pasaporte', 'Fecha Nacimiento']
+    consulta = 'SELECT  FROM '
+    
+    campos = 'id_pasajero,nombre_pasajero,num_pasaporte,fecha_nacimiento'
+    tabla = 'pasajeros'
+    consulta = consulta_select(campos, tabla)
+    
+    if consulta:
+        resultado = leer_datos(consulta)
+        if resultado:
+            for data in resultado:
+                pasajero = Pasajero(
+                    data[0], data[1], data[2], data[3])  # type: ignore
+                lista_pasajeros.append(pasajero)
 
-    if len(lista_pasajeros) > 0:
-        for objeto in lista_pasajeros:
-            tabla_pasajeros.add_row(
-                [objeto._id_pasajero, objeto._nombre_pasajero, objeto._num_pasaporte, objeto._fecha_nacimiento])
-    print(tabla_pasajeros)
+        if len(lista_pasajeros) > 0:
+            for objeto in lista_pasajeros:
+                tabla_pasajeros.add_row(
+                    [objeto._id_pasajero, objeto._nombre_pasajero, objeto._num_pasaporte, objeto._fecha_nacimiento])
+        print(tabla_pasajeros)
 
 
 def crear_pasajero():
-    consulta = 'INSERT INTO pasajeros(nombre_pasajero,num_pasaporte,fecha_nacimiento) VALUES (%s,%s,%s)'
+    campos = 'nombre_pasajero,num_pasaporte,fecha_nacimiento'
+    tabla = 'pasajeros'
     nombre_usuario = input('Ingrese Nombre Pasajero: ')
     numero_pasaporte = input('Ingrese Número Pasaporte: ')
     fecha_nacimiento = input('Ingrese Fecha Nacimiento (YYYY-MM-dd): ')
     fecha_nacimiento = datetime.strptime(fecha_nacimiento, '%Y-%m-%d')
-    datos = (nombre_usuario, numero_pasaporte, fecha_nacimiento)
+    datos = (nombre_usuario.title(), numero_pasaporte, fecha_nacimiento)
+    consulta = consulta_insert(campos,tabla)
     insertar_datos(consulta, datos)
 
 
