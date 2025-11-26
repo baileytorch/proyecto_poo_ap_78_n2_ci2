@@ -4,6 +4,12 @@ def consulta_select(campos, tabla):
         return consulta
 
 
+def consulta_select_id(campos, tabla, campo):
+    if campos != "" and tabla != "" and campo != "":
+        consulta = f"SELECT {campos} FROM {tabla} WHERE {campo}=%s"
+        return consulta
+
+
 def consulta_insert(campos, tabla):
     if campos != "" and tabla != "":
         consulta = f"INSERT INTO {tabla} ({campos}) VALUES ("
@@ -13,3 +19,12 @@ def consulta_insert(campos, tabla):
         consulta = consulta[:-1]
         consulta = consulta + ")"
         return consulta
+
+def pasajero_update():
+    consulta = f"""
+        UPDATE pasajeros SET 
+        nombre_pasajero=%s,
+        num_pasaporte=%s,
+        fecha_nacimiento=%s 
+        WHERE id_pasajero=%s"""
+    return consulta

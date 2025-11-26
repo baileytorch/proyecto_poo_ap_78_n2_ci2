@@ -42,6 +42,19 @@ def leer_datos(consulta):
             print("Su búsqueda no arrojó resultados...")
         conexion.close()
 
+def leer_dato_individual(consulta,dato):
+    conexion = generar_conexion()
+    if conexion and conexion.is_connected():
+        cursor = conexion.cursor()
+        if cursor != None:
+            cursor.execute(consulta,(dato,))
+            resultado = cursor.fetchone()
+            cursor.close()
+            return resultado
+        else:
+            print("Su búsqueda no arrojó resultados...")
+        conexion.close()
+
 
 def insertar_datos(consulta,datos):
     conexion = generar_conexion()
