@@ -20,6 +20,14 @@ def consulta_insert(campos, tabla):
         consulta = consulta + ")"
         return consulta
 
+def aerolinea_update():
+    consulta = f"""
+        UPDATE aerolineas SET 
+        nombre_aerolinea=%s,
+        web_aerolinea=%s
+        WHERE id_aerolinea=%s"""
+    return consulta
+
 def pasajero_update():
     consulta = f"""
         UPDATE pasajeros SET 

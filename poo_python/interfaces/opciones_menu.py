@@ -12,15 +12,22 @@ def opciones_menu():
     print('[0] Salir.')
 
 
-def menu_aerolioneas():
+def opciones_sub_menu(tipo_menu):
+    plural = tipo_menu
+    singular = tipo_menu
+    if tipo_menu == 'Avión':
+        plural = 'Avione'
+    elif tipo_menu == 'Localidad':
+        plural = 'Localidade'
+
     print()
-    print('Menú Aerolíneas')
+    print(f'Menú {plural}s')
     print('===============')
-    print('[1] Listado Aerolíneas.')
-    print('[2] Agregar Aerolínea.')
-    print('[3] Modificar Aerolínea.')
-    print('[4] Eliminar Aerolínea.')
-    print('[0] Volver al menú principal.')
+    print(f'[1] Listado {plural}s.')
+    print(f'[2] Agregar {singular}.')
+    print(f'[3] Modificar {singular}.')
+    print(f'[4] Eliminar {singular}.')
+    print(f'[0] Volver al menú principal.')
 
 
 def menu_asientos():
@@ -30,37 +37,4 @@ def menu_asientos():
     print('[1] Listado Asientos.')
     print('[2] Reservar Asiento.')
     print('[3] Eliminar Reserva Asiento.')
-    print('[0] Volver al menú principal.')
-
-
-def menu_aviones():
-    print()
-    print('Menú Aviones')
-    print('============')
-    print('[1] Listado Aviones.')
-    print('[2] Agregar Avión.')
-    print('[3] Modificar Avión.')
-    print('[4] Eliminar Avión.')
-    print('[0] Volver al menú principal.')
-
-
-def menu_localidades():
-    print()
-    print('Menú Localidades')
-    print('============')
-    print('[1] Listado Localidades.')
-    print('[2] Agregar Localidad.')
-    print('[3] Modificar Localidad.')
-    print('[4] Eliminar Localidad.')
-    print('[0] Volver al menú principal.')
-
-
-def menu_pasajeros():
-    print()
-    print('Menú Pasajeros')
-    print('==============')
-    print('[1] Listado Pasajeros.')
-    print('[2] Agregar Pasajero.')
-    print('[3] Modificar Pasajero.')
-    print('[4] Eliminar Pasajero.')
     print('[0] Volver al menú principal.')

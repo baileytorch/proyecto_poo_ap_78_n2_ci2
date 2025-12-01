@@ -1,5 +1,5 @@
-from interfaces.opciones_menu import opciones_menu, menu_aerolioneas, menu_aviones, menu_localidades, menu_pasajeros
-from negocio.negocio_aerolineas import obtener_datos_aerolineas
+from interfaces.opciones_menu import opciones_menu, opciones_sub_menu,menu_asientos
+from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 
@@ -12,14 +12,14 @@ def menu_principal():
         opcion = input('Seleccione su opción [0-7]: ')
         if opcion == '1':
             while True:
-                menu_aerolioneas()
+                opciones_sub_menu('Aerolínea')
                 opcion_aerolinea = input('Seleccione su opción [0-4]: ')
                 if opcion_aerolinea == '1':
                     obtener_datos_aerolineas()
                 elif opcion_aerolinea == '2':
-                    pass
+                    crear_aerolinea()
                 elif opcion_aerolinea == '3':
-                    pass
+                    modificar_aerolinea()
                 elif opcion_aerolinea == '4':
                     pass
                 elif opcion_aerolinea == '0':
@@ -28,10 +28,23 @@ def menu_principal():
                 else:
                     print('Opción incorrecta, intente nuevamente...')
         elif opcion == '2':
-            pass
+            while True:
+                menu_asientos()
+                opcion_asiento = input('Seleccione su opción [0-4]: ')
+                if opcion_asiento == '1':
+                    pass
+                elif opcion_asiento == '2':
+                    pass
+                elif opcion_asiento == '3':
+                    pass
+                elif opcion_asiento == '0':
+                    print('Volviendo al menú principal...')
+                    break
+                else:
+                    print('Opción incorrecta, intente nuevamente...')
         elif opcion == '3':
             while True:
-                menu_aviones()
+                opciones_sub_menu('Avión')
                 opcion_avion = input('Seleccione su opción [0-4]: ')
                 if opcion_avion == '1':
                     obtener_datos_aviones()
@@ -48,7 +61,7 @@ def menu_principal():
                     print('Opción incorrecta, intente nuevamente...')
         elif opcion == '4':
             while True:
-                menu_localidades()
+                opciones_sub_menu('Localidad')
                 opcion_localidad = input('Seleccione su opción [0-4]: ')
                 if opcion_localidad == '1':
                     pass
@@ -65,7 +78,7 @@ def menu_principal():
                     print('Opción incorrecta, intente nuevamente...')
         elif opcion == '5':
             while True:
-                menu_pasajeros()
+                opciones_sub_menu('Pasajero')
                 opcion_pasajero = input('Seleccione su opción [0-4]: ')
                 if opcion_pasajero == '1':
                     obtener_datos_pasajeros()
@@ -81,9 +94,39 @@ def menu_principal():
                 else:
                     print('Opción incorrecta, intente nuevamente...')
         elif opcion == '6':
-            pass
+            while True:
+                opciones_sub_menu('Reserva')
+                opcion_reserva = input('Seleccione su opción [0-4]: ')
+                if opcion_reserva == '1':
+                    pass
+                elif opcion_reserva == '2':
+                    pass
+                elif opcion_reserva == '3':
+                    pass
+                elif opcion_reserva == '4':
+                    pass
+                elif opcion_reserva == '0':
+                    print('Volviendo al menú principal...')
+                    break
+                else:
+                    print('Opción incorrecta, intente nuevamente...')
         elif opcion == '7':
-            pass
+            while True:
+                opciones_sub_menu('Vuelo')
+                opcion_vuelo = input('Seleccione su opción [0-4]: ')
+                if opcion_vuelo == '1':
+                    pass
+                elif opcion_vuelo == '2':
+                    pass
+                elif opcion_vuelo == '3':
+                    pass
+                elif opcion_vuelo == '4':
+                    pass
+                elif opcion_vuelo == '0':
+                    print('Volviendo al menú principal...')
+                    break
+                else:
+                    print('Opción incorrecta, intente nuevamente...')
         elif opcion == '0':
             print('Saliendo de sistema...')
             break
