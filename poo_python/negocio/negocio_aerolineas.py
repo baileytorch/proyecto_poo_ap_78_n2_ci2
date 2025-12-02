@@ -1,5 +1,5 @@
 from prettytable import PrettyTable
-from datos.consultas import aerolinea_update, consulta_insert, consulta_select, consulta_select_id
+from datos.consultas import aerolinea_delete,aerolinea_update, consulta_insert, consulta_select, consulta_select_id
 from datos.conexion import insertar_datos, leer_dato_individual, leer_datos
 from modelos.aerolinea import Aerolinea
 
@@ -34,7 +34,7 @@ def crear_aerolinea():
     web = input('Ingrese Web Aerolínea: ')
     datos = (nombre.title(), web)
     consulta = consulta_insert(campos, tabla)
-    insertar_datos(consulta, datos)
+    insertar_datos(consulta, datos,'crear')
 
 
 def modificar_aerolinea():
@@ -63,4 +63,22 @@ def modificar_aerolinea():
                 consulta_update = aerolinea_update()
                 insertar_datos(consulta_update, datos)
                 print(
-                    f'Aerolínea {str(aerolinea[1])} modificada existosamente!')
+                    f'¡Aerolínea {str(aerolinea[1])} modificada existosamente!') # type: ignore
+
+def eliminar_aerolinea():
+    obtener_datos_aerolineas()
+
+    nombre = input('Ingrese Nombre Aerolínea a Eliminar: ')
+    if nombre != '':
+        campos = 'id_aerolinea,nombre_aerolinea,web_aerolinea'
+        tabla = 'aerolineas'
+        campo = 'nombre_aerolinea'
+        consulta = consulta_select_id(campos, tabla, campo)
+        if consulta:
+            aerolinea = leer_dato_individual(consulta, nombre)
+            if aerolinea:
+                datos = (aerolinea[0])  # type: ignore
+                consulta_delete = aerolinea_delete()
+                insertar_datos(consulta_delete, datos)
+                print(
+                    f'¡Aerolínea {str(aerolinea[1])} eliminada existosamente!') # type: ignore

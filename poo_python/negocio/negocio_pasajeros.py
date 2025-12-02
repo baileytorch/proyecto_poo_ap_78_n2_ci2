@@ -39,7 +39,7 @@ def crear_pasajero():
     fecha_nacimiento = datetime.strptime(fecha_nacimiento, '%Y-%m-%d')
     datos = (nombre.title(), pasaporte, fecha_nacimiento)
     consulta = consulta_insert(campos, tabla)
-    insertar_datos(consulta, datos)
+    insertar_datos(consulta, datos,'crear')
 
 
 def modificar_pasajero():

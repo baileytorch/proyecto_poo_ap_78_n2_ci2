@@ -28,11 +28,23 @@ def aerolinea_update():
         WHERE id_aerolinea=%s"""
     return consulta
 
+def aerolinea_delete():
+    consulta = f"""
+        DELETE FROM aerolineas
+        WHERE id_aerolinea=%s"""
+    return consulta
+
 def pasajero_update():
     consulta = f"""
         UPDATE pasajeros SET 
         nombre_pasajero=%s,
         num_pasaporte=%s,
         fecha_nacimiento=%s 
+        WHERE id_pasajero=%s"""
+    return consulta
+
+def pasajero_delete():
+    consulta = f"""
+        DELETE FROM pasajeros
         WHERE id_pasajero=%s"""
     return consulta
