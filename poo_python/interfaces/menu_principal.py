@@ -1,5 +1,5 @@
 from interfaces.opciones_menu import opciones_menu, opciones_sub_menu,menu_asientos
-from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea
+from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea,eliminar_aerolinea
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 
@@ -21,7 +21,7 @@ def menu_principal():
                 elif opcion_aerolinea == '3':
                     modificar_aerolinea()
                 elif opcion_aerolinea == '4':
-                    pass
+                    eliminar_aerolinea()
                 elif opcion_aerolinea == '0':
                     print('Volviendo al menú principal...')
                     break

@@ -1,6 +1,7 @@
 from prettytable import PrettyTable
-from datos.consultas import aerolinea_delete,aerolinea_update, consulta_insert, consulta_select, consulta_select_id
+from datos.consultas import consulta_nombre_aerolinea, aerolinea_delete, aerolinea_update, consulta_insert, consulta_select, consulta_select_id
 from datos.conexion import insertar_datos, leer_dato_individual, leer_datos
+from interfaces.interface_aerolinea import solicitar_data_aerolinea
 from modelos.aerolinea import Aerolinea
 
 
@@ -30,11 +31,11 @@ def obtener_datos_aerolineas():
 def crear_aerolinea():
     campos = 'nombre_aerolinea,web_aerolinea'
     tabla = 'aerolineas'
-    nombre = input('Ingrese Nombre Aerolínea: ')
-    web = input('Ingrese Web Aerolínea: ')
-    datos = (nombre.title(), web)
-    consulta = consulta_insert(campos, tabla)
-    insertar_datos(consulta, datos,'crear')
+    nombre, web = solicitar_data_aerolinea('crear')  # type: ignore
+    if nombre != '' and web != '':
+        datos = (nombre.title(), web)
+        consulta = consulta_insert(campos, tabla)
+        insertar_datos(consulta, datos, 'crear')
 
 
 def modificar_aerolinea():
@@ -44,26 +45,23 @@ def modificar_aerolinea():
     if nombre != '':
         campos = 'id_aerolinea,nombre_aerolinea,web_aerolinea'
         tabla = 'aerolineas'
-        campo = 'nombre_aerolinea'
-        consulta = consulta_select_id(campos, tabla, campo)
+        consulta = consulta_nombre_aerolinea(campos, tabla)
         if consulta:
             aerolinea = leer_dato_individual(consulta, nombre)
             if aerolinea:
-                nuevo_nombre = input(
-                    'Ingrese Nombre Aerolínea (o ENTER para conservar): ')
-                nueva_web = input(
-                    'Ingrese Web Aerolínea (o ENTER para conservar): ')
+                nuevo_nombre, nueva_web = solicitar_data_aerolinea()  # type: ignore
 
                 if nuevo_nombre == '':
                     nuevo_nombre = str(aerolinea[1])  # type: ignore
                 if nueva_web == '':
                     nueva_web = aerolinea[2]  # type: ignore
 
-                datos = (nuevo_nombre.title(), nueva_web, aerolinea[0])  # type: ignore
+                datos = (nuevo_nombre.title(), nueva_web,
+                        aerolinea[0])  # type: ignore
                 consulta_update = aerolinea_update()
                 insertar_datos(consulta_update, datos)
-                print(
-                    f'¡Aerolínea {str(aerolinea[1])} modificada existosamente!') # type: ignore
+                print(f'¡Aerolínea "{str(aerolinea[1])}" modificada existosamente!')  # type: ignore
+
 
 def eliminar_aerolinea():
     obtener_datos_aerolineas()
@@ -72,13 +70,11 @@ def eliminar_aerolinea():
     if nombre != '':
         campos = 'id_aerolinea,nombre_aerolinea,web_aerolinea'
         tabla = 'aerolineas'
-        campo = 'nombre_aerolinea'
-        consulta = consulta_select_id(campos, tabla, campo)
+        consulta = consulta_nombre_aerolinea(campos, tabla)
         if consulta:
             aerolinea = leer_dato_individual(consulta, nombre)
             if aerolinea:
-                datos = (aerolinea[0])  # type: ignore
+                datos = (aerolinea[0],)  # type: ignore
                 consulta_delete = aerolinea_delete()
                 insertar_datos(consulta_delete, datos)
-                print(
-                    f'¡Aerolínea {str(aerolinea[1])} eliminada existosamente!') # type: ignore
+                print(f'¡Aerolínea "{str(aerolinea[1])}" eliminada existosamente!')# type: ignore

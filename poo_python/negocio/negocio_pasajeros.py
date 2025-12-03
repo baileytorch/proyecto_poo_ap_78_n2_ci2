@@ -61,7 +61,6 @@ def modificar_pasajero():
                 nueva_fecha_nacimiento = input(
                     'Ingrese Fecha Nacimiento (YYYY-MM-dd) (o ENTER para conservar): ')
                 
-
                 if nuevo_nombre == '':
                     nuevo_nombre = str(pasajero[1])  # type: ignore
                 if nuevo_pasaporte == '':

@@ -4,6 +4,12 @@ def consulta_select(campos, tabla):
         return consulta
 
 
+def consulta_nombre_aerolinea(campos, tabla):
+    if campos != "" and tabla != "":
+        consulta = f"SELECT {campos} FROM {tabla} WHERE nombre_aerolinea LIKE CONCAT('%', %s, '%')"
+        return consulta
+
+
 def consulta_select_id(campos, tabla, campo):
     if campos != "" and tabla != "" and campo != "":
         consulta = f"SELECT {campos} FROM {tabla} WHERE {campo}=%s"
