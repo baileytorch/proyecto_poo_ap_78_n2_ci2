@@ -1,15 +1,16 @@
 import mysql.connector
 from mysql.connector import errorcode
+from auxiliares.data_aplicacion import host, port, user, password, database, use_pure
 
 
 def generar_conexion():
     config = {
-        'host': "localhost",
-        'port': 3306,
-        'user': "root",
-        'password': "",
-        'database': "aerolinea",
-        'use_pure': True
+        'host': host,
+        'port': port,
+        'user': user,
+        'password': password,
+        'database': database,
+        'use_pure': use_pure
     }
     try:
         conexion = mysql.connector.connect(**config)
@@ -42,12 +43,13 @@ def leer_datos(consulta):
             print("Su búsqueda no arrojó resultados...")
         conexion.close()
 
-def leer_dato_individual(consulta,dato):
+
+def leer_dato_individual(consulta, dato):
     conexion = generar_conexion()
     if conexion and conexion.is_connected():
         cursor = conexion.cursor()
         if cursor != None:
-            cursor.execute(consulta,(dato,))
+            cursor.execute(consulta, (dato,))
             resultado = cursor.fetchone()
             cursor.close()
             return resultado
@@ -56,12 +58,12 @@ def leer_dato_individual(consulta,dato):
         conexion.close()
 
 
-def insertar_datos(consulta,datos,proceso=''):
+def insertar_datos(consulta, datos, proceso=''):
     conexion = generar_conexion()
     if conexion and conexion.is_connected():
         cursor = conexion.cursor()
         if cursor != None:
-            cursor.execute(consulta,datos)
+            cursor.execute(consulta, datos)
             conexion.commit()
             cursor.close()
             if proceso == 'crear':
