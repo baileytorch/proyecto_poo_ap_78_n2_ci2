@@ -4,7 +4,7 @@ fecha_minima = date.min
 
 
 class Pasajero:
-    def __init__(self, id_pasajero=0, nombre_pasajero='', num_pasaporte='', fecha_nacimiento=fecha_minima):
+    def __init__(self, id_pasajero=None, nombre_pasajero=None, num_pasaporte=None, fecha_nacimiento=fecha_minima):
         self._id_pasajero = id_pasajero
         self._nombre_pasajero = nombre_pasajero
         self._num_pasaporte = num_pasaporte
