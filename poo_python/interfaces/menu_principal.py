@@ -3,8 +3,10 @@ from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 
-
 def menu_principal():
+    pass
+
+def menu_aplicacion():
     print('Sistema de Gestión de Aerolínea')
     print('===============================')
     while True:

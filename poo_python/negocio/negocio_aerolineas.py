@@ -1,14 +1,14 @@
 from prettytable import PrettyTable
 from datos.consultas import consulta_nombre_aerolinea, aerolinea_delete, aerolinea_update, consulta_insert, consulta_select, consulta_select_id
 from datos.conexion import insertar_datos, leer_dato_individual, leer_datos
-from interfaces.interface_aerolinea import solicitar_data_aerolinea
+from interfaces.interface_aerolineas import solicitar_data_aerolinea
 from modelos.aerolinea import Aerolinea
 
 
 def obtener_datos_aerolineas():
     lista_aerolineas = []
     tabla_aerolineas = PrettyTable()
-    tabla_aerolineas.field_names = ['N°', 'Nombre', 'Web']
+    tabla_aerolineas.field_names = ['Id', 'Nombre', 'Web']
 
     campos = 'id_aerolinea,nombre_aerolinea,web_aerolinea'
     tabla = 'aerolineas'
