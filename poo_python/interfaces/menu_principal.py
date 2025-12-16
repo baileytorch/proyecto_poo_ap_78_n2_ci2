@@ -1,16 +1,29 @@
-from interfaces.opciones_menu import opciones_menu, opciones_sub_menu,menu_asientos
+from interfaces.opciones_menu import opciones_menu_inicio,opciones_menu_principal, opciones_sub_menu,menu_asientos
 from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea,eliminar_aerolinea
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
+from negocio.negocio_usuarios import crear_usuario
 
 def menu_principal():
-    pass
+    while True:
+        print('Sistema de Gestión de Aerolínea')
+        print('===============================')
+        opciones_menu_inicio()
+        opcion_inicio = input('Seleccione su opción [0-2]: ')
+        if opcion_inicio == '1':
+            crear_usuario()
+        elif opcion_inicio == '2':
+            pass
+        elif opcion_inicio == '0':
+            print('Saliendo...')
+            break
+        else:
+            print('Opción incorrecta, intente nuevamente...')
+    
 
 def menu_aplicacion():
-    print('Sistema de Gestión de Aerolínea')
-    print('===============================')
     while True:
-        opciones_menu()
+        opciones_menu_principal()
         opcion = input('Seleccione su opción [0-7]: ')
         if opcion == '1':
             while True:

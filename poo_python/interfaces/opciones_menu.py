@@ -1,4 +1,12 @@
-def opciones_menu():
+def opciones_menu_inicio():
+    print()
+    print('Menú Inicio')
+    print('===========')
+    print('[1] Registrar Nuevo Usuario.')
+    print('[2] Login Sistema.')
+    print('[0] Salir.')
+
+def opciones_menu_principal():
     print()
     print('Menú Principal')
     print('==============')
