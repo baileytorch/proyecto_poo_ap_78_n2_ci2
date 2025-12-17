@@ -1,4 +1,4 @@
-from interfaces.menu_principal import menu_aplicacion
+from interfaces.menu_principal import menu_principal
 
 
-menu_aplicacion()
+menu_principal()
