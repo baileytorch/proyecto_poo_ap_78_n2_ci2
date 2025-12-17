@@ -23,7 +23,12 @@ def login():
         consulta = consulta_nombre_usuario(campos, tabla)
         usuario_db = leer_dato_individual(consulta, dato)
         if usuario_db:
-            # usuario = Usuario(
-            #     usuario_db[0],usuario_db[1],usuario_db[2],usuario_db[3]) # type: ignore
-            if bcrypt.checkpw(contrasena.encode('utf-8'), b'usuario_db[2]'):
+            usuario = Usuario(
+                usuario_db[0],usuario_db[1],usuario_db[2],usuario_db[3]) # type: ignore
+            contrasena_db = str(usuario.contrasena)
+            if bcrypt.checkpw(contrasena.encode('utf-8'), contrasena_db.encode('utf-8')):
                 return True
+            else:
+                print('Contraseña NO corresponde.')
+        else:
+            print('Usuario NO registrado.')

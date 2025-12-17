@@ -2,7 +2,7 @@ from interfaces.opciones_menu import opciones_menu_inicio,opciones_menu_principa
 from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea,eliminar_aerolinea
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
-from negocio.negocio_usuarios import crear_usuario
+from negocio.negocio_usuarios import crear_usuario,login
 
 def menu_principal():
     while True:
@@ -13,7 +13,10 @@ def menu_principal():
         if opcion_inicio == '1':
             crear_usuario()
         elif opcion_inicio == '2':
-            pass
+            respuesta = login()
+            if respuesta == True:
+                print('Inicio de sesión exitoso.')
+                menu_aplicacion()
         elif opcion_inicio == '0':
             print('Saliendo...')
             break
