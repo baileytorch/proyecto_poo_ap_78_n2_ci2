@@ -17,6 +17,7 @@ def opciones_menu_principal():
     print('[5] Gestion Pasajeros.')
     print('[6] Gestion Reservas.')
     print('[7] Gestion Vuelos.')
+    print('[8] Gestion API.')
     print('[0] Salir.')
 
 
@@ -45,4 +46,14 @@ def menu_asientos():
     print('[1] Listado Asientos.')
     print('[2] Reservar Asiento.')
     print('[3] Eliminar Reserva Asiento.')
+    print('[0] Volver al menú principal.')
+    
+def menu_api():
+    print()
+    print('Menú API')
+    print('============')
+    print('[1] Obtener Usuarios.')
+    print('[2] Crear Usuario.')
+    print('[3] Modificar Usuario.')
+    print('[4] Eliminar Usuario.')
     print('[0] Volver al menú principal.')

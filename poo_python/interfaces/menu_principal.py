@@ -1,8 +1,10 @@
-from interfaces.opciones_menu import opciones_menu_inicio,opciones_menu_principal, opciones_sub_menu,menu_asientos
+from interfaces.opciones_menu import opciones_menu_inicio,opciones_menu_principal, opciones_sub_menu,menu_asientos,menu_api
 from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,modificar_aerolinea,eliminar_aerolinea
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 from negocio.negocio_usuarios import crear_usuario,login
+from servicios.jsonplaceholder import obtener_users_api
+from auxiliares.data_api import url_users
 
 def menu_principal():
     while True:
@@ -141,6 +143,23 @@ def menu_aplicacion():
                 elif opcion_vuelo == '4':
                     pass
                 elif opcion_vuelo == '0':
+                    print('Volviendo al menú principal...')
+                    break
+                else:
+                    print('Opción incorrecta, intente nuevamente...')
+        elif opcion == '8':
+            while True:
+                menu_api()
+                opcion_api = input('Seleccione su opción [0-4]: ')
+                if opcion_api == '1':
+                    obtener_users_api(url_users)
+                elif opcion_api == '2':
+                    pass
+                elif opcion_api == '3':
+                    pass
+                elif opcion_api == '4':
+                    pass
+                elif opcion_api == '0':
                     print('Volviendo al menú principal...')
                     break
                 else:
