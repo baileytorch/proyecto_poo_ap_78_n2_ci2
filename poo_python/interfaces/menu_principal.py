@@ -3,7 +3,7 @@ from negocio.negocio_aerolineas import obtener_datos_aerolineas,crear_aerolinea,
 from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 from negocio.negocio_usuarios import crear_usuario,login
-from servicios.jsonplaceholder import obtener_users_api
+from servicios.jsonplaceholder import obtener_users_api,crear_user_api
 from auxiliares.data_api import url_users
 
 def menu_principal():
@@ -154,7 +154,7 @@ def menu_aplicacion():
                 if opcion_api == '1':
                     obtener_users_api(url_users)
                 elif opcion_api == '2':
-                    pass
+                    crear_user_api(url_users)
                 elif opcion_api == '3':
                     pass
                 elif opcion_api == '4':

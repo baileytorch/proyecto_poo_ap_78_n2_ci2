@@ -47,7 +47,7 @@ def leer_datos(consulta):
 def leer_dato_individual(consulta, dato):
     conexion = generar_conexion()
     if conexion and conexion.is_connected():
-        cursor = conexion.cursor()
+        cursor = conexion.cursor(buffered=True)
         if cursor != None:
             cursor.execute(consulta, (dato,))
             resultado = cursor.fetchone()
