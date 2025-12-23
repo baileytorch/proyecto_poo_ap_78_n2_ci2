@@ -4,7 +4,8 @@ from negocio.negocio_aviones import obtener_datos_aviones
 from negocio.negocio_pasajeros import obtener_datos_pasajeros, crear_pasajero,modificar_pasajero
 from negocio.negocio_usuarios import crear_usuario,login
 from servicios.jsonplaceholder import obtener_users_api,crear_user_api,actualizar_user_api,eliminar_user_api
-from auxiliares.data_api import url_users
+from servicios.serper import busqueda_serper
+from auxiliares.data_api import url_users,url_serper
 
 def menu_principal():
     while True:
@@ -160,7 +161,7 @@ def menu_aplicacion():
                 elif opcion_api == '4':
                     eliminar_user_api(url_users)
                 elif opcion_api=='5':
-                    pass
+                    busqueda_serper(url_serper)
                 elif opcion_api == '0':
                     print('Volviendo al menú principal...')
                     break
