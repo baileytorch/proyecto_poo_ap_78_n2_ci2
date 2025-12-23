@@ -159,6 +159,8 @@ def menu_aplicacion():
                     actualizar_user_api(url_users)
                 elif opcion_api == '4':
                     eliminar_user_api(url_users)
+                elif opcion_api=='5':
+                    pass
                 elif opcion_api == '0':
                     print('Volviendo al menú principal...')
                     break
